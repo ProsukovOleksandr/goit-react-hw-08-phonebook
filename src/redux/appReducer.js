@@ -73,38 +73,3 @@ export const getIsLoading = state => state.contacts.isLoading;
 export const getError = state => state.contacts.error;
 // Редюсер слайсу
 export const appReducer = appSlice.reducer;
-
-
-//export const appReducer = (state = initialState, action) => {
-//  switch (action.type) {
-//   case 'app/setContacts': {
-//      return { ...state, contacts: action.payload };
-//   }
-//   case 'app/deleteContacts': {
-//      return { ...state, contacts: action.payload };
-//   }
-//  case 'app/filterContacts': {
-//    return { ...state, filter: action.payload };
-//   }
-//   default:
-//     return state;
-// }
-//};
-//export const setContacts = (payload)=>{
-//  return {
-//   type:"app/addContacts",
-//    payload,
-//  }
-//}
-//export const setDelete = (payload)=>{
-//  return {
-//    type:"app/deleteContacts",
-//    payload,
-//  }
-//}
-//export const setFilter = (payload)=>{
-//  return {
-//    type:"app/filterContacts",
-//    payload
-//  }
-//}
