@@ -141,11 +141,11 @@ const authSlice = createSlice({
 
 // Селектори
 
-export const selectUserAuthentication = state => state.authenticated;
-export const selectUserData = state => state.userData;
-export const selectUserIsLoading = state => state.isLoading;
-export const selectUserError = state => state.error;
-export const selectUserToken = state => state.token;
+export const selectUserAuthentication = state => state.user.authenticated;
+export const selectUserData = state => state.user.userData;
+export const selectUserIsLoading = state => state.user.isLoading;
+export const selectUserError = state => state.user.error;
+export const selectUserToken = state => state.user.token;
 
 // Редюсер слайсу
 export const authReducer = authSlice.reducer;

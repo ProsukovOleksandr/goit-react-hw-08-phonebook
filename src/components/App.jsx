@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, Route, Routes } from 'react-router-dom';
 import { Suspense,lazy, useEffect } from 'react';
-
+//user600677811LOLYOUUU
 import {
   CONTACTS_ROUTE,
   HOME_ROUTE,
@@ -30,14 +30,11 @@ export const App = () => {
     dispatch(refreshUser());
   }, [dispatch]);
 
- 
-
   return (
     <div>
       <header>
         <nav className="nav">
           <NavLink to={HOME_ROUTE}>Home</NavLink>
-
           {authenticated ? (
             <>
               <NavLink to={CONTACTS_ROUTE}>Phonebook</NavLink>

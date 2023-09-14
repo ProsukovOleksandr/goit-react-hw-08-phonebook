@@ -67,9 +67,9 @@ const appSlice = createSlice({
 export const {setFilter} = appSlice.actions;
 
 //Селектори
-export const selectContacts = state => state.contacts.items;
-export const selectFilter = state => state.filter;
-export const getIsLoading = state => state.contacts.isLoading;
-export const getError = state => state.contacts.error;
+export const selectContacts = state => state.app.contacts.items;
+export const selectFilter = state => state.app.filter;
+export const getIsLoading = state => state.app.contacts.isLoading;
+export const getError = state => state.app.contacts.error;
 // Редюсер слайсу
 export const appReducer = appSlice.reducer;

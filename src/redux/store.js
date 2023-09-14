@@ -8,9 +8,13 @@ import {
   REGISTER,
 } from 'redux-persist';
 import { configureStore } from '@reduxjs/toolkit';
+import { authReducer } from './authReducer';
 
 export const store = configureStore({
-  reducer: appReducer,
+  reducer: {
+    app:appReducer,
+    user:authReducer,
+  },
   
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
