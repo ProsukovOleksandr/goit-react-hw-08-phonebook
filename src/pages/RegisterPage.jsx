@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { registerUser } from 'redux/authReducer';
 import CssBaseline from '@mui/material/CssBaseline';
 import Container from '@mui/material/Container';
@@ -17,9 +17,12 @@ import {
 } from '@mui/material';
 import Grid from '@mui/material/Unstable_Grid2';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
+const { selectUserError } = require("redux/authReducer");
 const RegisterPage = () => {
   const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
+
+  const error = useSelector(selectUserError);
 
   const handleClickShowPassword = () => setShowPassword(show => !show);
 
@@ -38,7 +41,6 @@ const RegisterPage = () => {
       email: email,
       password: password,
     };
-    console.log(formData);
     dispatch(registerUser(formData));
   };
 
@@ -102,8 +104,11 @@ const RegisterPage = () => {
             </FormControl>
             </Grid>
           <Button type="submit" variant="contained" endIcon={<SendIcon/>}>Register</Button>
+          
         </Box>
+        {error && <b>Some error ocured. Please try again</b>}
       </Grid>
+      
     </Container>
     </>
   );

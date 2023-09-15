@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { loginUser } from 'redux/authReducer';
+import { useDispatch, useSelector } from 'react-redux';
+import { loginUser, selectUserError } from 'redux/authReducer';
 import CssBaseline from '@mui/material/CssBaseline';
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
@@ -21,6 +21,7 @@ const LoginPage = () => {
   const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
 
+  const error = useSelector(selectUserError);
   const handleClickShowPassword = () => setShowPassword(show => !show);
 
   const handleMouseDownPassword = event => {
@@ -37,7 +38,6 @@ const LoginPage = () => {
       email,
       password,
     };
-
     dispatch(loginUser(formData));
   };
 
@@ -56,6 +56,7 @@ const LoginPage = () => {
             Login
           </Typography>
           <Box component="form" autoComplete="off" onSubmit={handleSubmit}>
+          {error && <b>Some error ocured. Please try again</b>}
            <Grid>
               <TextField
                 type="email"

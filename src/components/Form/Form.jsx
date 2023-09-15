@@ -8,7 +8,7 @@ export const ContactForm = () => {
   const dispatch = useDispatch();
   let initContact = {
     name: '',
-    numbers: '',
+    number: '',
   };
   const onSubmit = e => {
     e.preventDefault();
@@ -21,7 +21,7 @@ export const ContactForm = () => {
     dispatch(
       addContacts({
         name: form[0].value,
-        numbers: form[1].value,
+        number: form[2].value,
       })
     );
     form.reset();
@@ -32,7 +32,7 @@ export const ContactForm = () => {
       initContact.name = e.target.value;
     }
     if (e.target.name === 'number') {
-      initContact.numbers = e.target.value;
+      initContact.number = e.target.value;
     }
     initContact.id = id;
   };
@@ -57,7 +57,7 @@ export const ContactForm = () => {
           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
           required
           onChange={onChange}
-          defaultValue={initContact.numbers}
+          defaultValue={initContact.number}
           label="Enter contact number..."
         />
         <Button

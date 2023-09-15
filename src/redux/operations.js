@@ -11,11 +11,11 @@ async (_, thunkAPI) => {
 });
 export const addContacts = createAsyncThunk(
     "contacts/addContacts",
-    async ({name , numbers}, thunkAPI) => {
+    async ({name , number}, thunkAPI) => {
       try {
         const response = await instance.post("contacts", {
           name: name,
-          number: numbers,
+          number: number,
         });
         return response.data;
       } catch (e) {
