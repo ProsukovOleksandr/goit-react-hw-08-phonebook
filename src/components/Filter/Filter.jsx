@@ -1,3 +1,4 @@
+import { Box, CssBaseline, TextField } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectFilter, setFilter } from 'redux/appReducer';
 
@@ -8,9 +9,11 @@ export const Filter = () => {
     dispatch(setFilter(e.target.value));
   };
   return (
-    <label>
-      Find contacts by name
-      <input type="text" onChange={handleFilter} value={filter} />
-    </label>
+    <>
+      <CssBaseline />
+      <Box component="form" autoComplete="off">
+        <TextField type="text" onChange={handleFilter} value={filter} label = "Find contacts by name" />
+      </Box>
+    </>
   );
 };

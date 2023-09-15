@@ -2,6 +2,7 @@ import { ContactListItem } from './ContactListItem/ContactListItem';
 import { getError, getIsLoading, selectContacts, selectFilter } from 'redux/appReducer';
 
 import { /*useDispatch,*/ useSelector } from 'react-redux';
+import { Container } from '@mui/material';
 //import { deleteContacts } from 'redux/operations';
 
 export const ContactList = () => {
@@ -20,7 +21,13 @@ export const ContactList = () => {
     }
   };
   return (
-    <div>
+    <Container maxWidth="lg"
+    sx={{
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center'
+    }}>
     {isLoading && <p>Loading contacts...</p>}
     {error && <p>{error}</p>}
       {filterContacts(items, filter).map(contact => {
@@ -32,6 +39,6 @@ export const ContactList = () => {
           />
         );
       })}
-    </div>
+    </Container>
   );
 };

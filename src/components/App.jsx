@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, Route, Routes } from 'react-router-dom';
-import { Suspense,lazy, useEffect } from 'react';
+import { Suspense, lazy, useEffect } from 'react';
+import Button from '@mui/material/Button';
 //user600677811LOLYOUUU
 import {
   CONTACTS_ROUTE,
@@ -15,13 +16,16 @@ import {
   selectUserAuthentication,
   selectUserData,
 } from 'redux/authReducer';
+import { Box, Container, Grid, Typography } from '@mui/material';
+import LogoutIcon from '@mui/icons-material/Logout';
 const NotFoundPage = lazy(() => import('pages/NotFound'));
 export const App = () => {
-
   const dispatch = useDispatch();
   const authenticated = useSelector(selectUserAuthentication);
   const userData = useSelector(selectUserData);
-
+  const linkStyle =  {
+  display:"flex",textDecoration: 'none', width:"150px", height: "20px",color:"white", justifyContent:"center", fontWeight: "700", fontSize:"20px"
+}
   const handleLogOut = () => {
     dispatch(logOutUser());
   };
@@ -32,23 +36,80 @@ export const App = () => {
 
   return (
     <div>
-      <header>
-        <nav className="nav">
-          <NavLink to={HOME_ROUTE}>Home</NavLink>
+      <Container
+        maxWidth="lg"
+        sx={{
+          display: 'flex',
+          flexDirection: 'row',
+          alignItems: 'center',
+          justifyContent: 'center'
+        }}
+      >
+        <Box component="nav" sx={{
+           display:"flex",  marginBottom: '20px',
+            backgroundColor: "#1976d2", width:"100%", height:"35px", 
+            justifyContent: "center",
+            padding:"0px 10px"
+            }}>
+          <Grid>
+            <NavLink
+              style={linkStyle}
+              to={HOME_ROUTE}
+            >
+              Home
+            </NavLink>
+          </Grid>
           {authenticated ? (
             <>
-              <NavLink to={CONTACTS_ROUTE}>Phonebook</NavLink>
-              <span>Hello, {userData.name}</span>
-              <button onClick={handleLogOut}>Log Out</button>
+              <Grid>
+                <NavLink
+                  style={linkStyle}
+                  to={CONTACTS_ROUTE}
+                >
+                  Phonebook
+                </NavLink>
+              </Grid>
+              <Typography variant="p" gutterBottom sx={{width: "200px",  
+              height:"30px", 
+              color:"white", 
+              display: "flex", 
+              justifyContent:"center",
+              alignItems:"center"
+              }}>Hello, {userData.name}</Typography>
+              <Button
+                sx={{
+                  backgroundColor: 'yellow',
+                  color: 'black',
+                  ':hover': { backgroundColor: '#ECEC38' },
+                }}
+                onClick={handleLogOut}
+                endIcon={<LogoutIcon />}
+              >
+                Log Out
+              </Button>
             </>
           ) : (
             <>
-              <NavLink to={LOGIN_ROUTE}>Login</NavLink>
-              <NavLink to={REGISTER_ROUTE}>Register</NavLink>
+              <Grid>
+                <NavLink
+                  style={linkStyle}
+                  to={LOGIN_ROUTE}
+                >
+                  Login
+                </NavLink>
+              </Grid>
+              <Grid>
+                <NavLink
+                  style={linkStyle}
+                  to={REGISTER_ROUTE}
+                >
+                  Register
+                </NavLink>
+              </Grid>
             </>
           )}
-        </nav>
-      </header>
+        </Box>
+      </Container>
       <main>
         <Suspense fallback={<p>Loading data, please, wait...</p>}>
           <Routes>
