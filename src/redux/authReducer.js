@@ -61,7 +61,7 @@ export const refreshUser = createAsyncThunk(
   async (_, thunkApi) => {
     try {
       const state = thunkApi.getState();
-      const userToken = state.auth.token;
+      const userToken = state.user.token;
 
       token.set(userToken);
       const { data } = await instance.get(`users/current`);
@@ -74,7 +74,7 @@ export const refreshUser = createAsyncThunk(
   {
     condition: (_, { getState }) => {
       const state = getState();
-      const token = state.auth.token;
+      const token = state.user.token;
 
       if (!token) return false;
     },
