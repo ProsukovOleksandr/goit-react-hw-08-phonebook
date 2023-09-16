@@ -1,5 +1,7 @@
 import { appReducer } from './appReducer';
 import {
+  persistReducer,
+  persistStore,
   FLUSH,
   REHYDRATE,
   PAUSE,
@@ -10,8 +12,7 @@ import {
 import { configureStore } from '@reduxjs/toolkit';
 import { authReducer } from './authReducer';
 import storage from 'redux-persist/lib/storage';
-import persistReducer from 'redux-persist/es/persistReducer';
-import persistStore from 'redux-persist/es/persistStore';
+
 const authPersistConfig = {
   key: 'auth',
   storage,
@@ -20,10 +21,10 @@ const authPersistConfig = {
 
 export const store = configureStore({
   reducer: {
-    app:appReducer,
-    user:persistReducer(authPersistConfig, authReducer),
+    app: appReducer,
+    user: persistReducer(authPersistConfig, authReducer),
   },
-  
+
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
       serializableCheck: {
